@@ -3,91 +3,146 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Proiect_IA
 {
     /// <summary>
-    /// Clasa ce are ca rol principal implementarea algoritmului Monte Carlo
+    /// Arbore necesar pentru algoritm <para/>
     /// </summary>
-    static class MonteCarloAlgo
+    public class TreeSearch
     {
-        #region SELECTION
         /// <summary>
-        /// 
+        /// Nodul radacina al arborelui
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="rootPlayer"></param>
-        /// <returns></returns>
-        public static Node SelectChild(this Node node, byte rootPlayer)
-        {
-            var isRootPlayer = node.State.Player == rootPlayer;
+        public Node Root { get; set; }
 
-            Node bestChild = null;
-            var maxEvaluation = double.MinValue;
-            foreach(var childNode in node.ChildNodes)
+        /// <summary>
+        /// Semnal care indica ca algoritmul a terminat de rulat
+        /// </summary>
+        public bool Finished { get; set; }
+
+        /// <summary>
+        /// Numarul de noduri unice in arbore
+        /// </summary>
+        public int UniqueNodes { get; set; }
+
+        /// <summary>
+        /// O lista cu toate nodurile din arbore, in ordinea in care au fost adaugate.
+        /// </summary>
+        public List<Node> AllNodes { get; set; }
+
+        /// <summary>
+        /// Creare arbore cu o tabla data.
+        /// </summary>
+        /// <param name="gameBoard">Tabla de joc.</param>
+        public TreeSearch(Board gameBoard)
+        {
+            Root = new Node(null, gameBoard);
+
+            UniqueNodes = 1;
+
+            AllNodes = new List<Node>();
+            AllNodes.Add(Root);
+        }
+
+        /// <summary>
+        /// Perform a step of MCTS <para/>
+        /// Selecteaza nodul cu functia de evaluare cea mai buna, il expandeaza, simuleaza copii si propaga inapoi rezultatul pe arbore.
+        /// </summary>
+        public void Step(TextBox console)
+        {
+            //Selection
+            Node currentNode = Selection(Root);
+
+            if (currentNode == null)
             {
-                var childEvaluation = childNode.GetEvaluation(isRootPlayer);
-                if(childEvaluation > maxEvaluation)
+                console.Text += "Something has went wrong during selection. Null node returned.";
+            }
+
+            //Expansion
+            Node nodeBeforeExpansion = currentNode;
+            currentNode = currentNode.Expand();
+            if (nodeBeforeExpansion != currentNode)
+            {
+                UniqueNodes++;
+                AllNodes.Add(currentNode);
+            }
+            //Simulation
+            Board resultState = currentNode.Board.SimulateUntilEnd(console);
+            
+            //Backpropogation
+            while (currentNode != null)
+            {
+                currentNode.Update(resultState.GetScore(currentNode.Board.PreviousPlayer));
+                currentNode = currentNode.Parent;
+            }
+            
+        }
+
+        /// <summary>
+        /// Primul pas al algoritmului: Selectia. <para/>
+        /// </summary>
+        /// <param name="n">Nodul curent.</param>
+        /// <returns>Cel mai bun nod pentru a fi expandat.</returns>
+        private Node Selection(Node n)
+        {
+            if (n == null)
+            {
+                return null;
+            }
+            else if (n.Childrens.Count == 0 || n.UntriedMoves.Count != 0)
+            {
+                return n;
+            }
+            else
+            {
+                double highestUCB = float.MinValue;
+                Node highestUCBChild = null;
+
+                foreach (Node child in n.Childrens)
                 {
-                    bestChild = childNode;
-                    maxEvaluation = childEvaluation;
+                    double currentUCB1 = child.UCBValue();
+                    if (currentUCB1 > highestUCB)
+                    {
+                        highestUCB = currentUCB1;
+                        highestUCBChild = child;
+                    }
+                }
+
+                return Selection(highestUCBChild);
+            }
+        }
+
+        /// <summary>
+        /// Alegerea celui mai bun nod.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>Cel mai bun copil pentru nodul curent.</returns>
+        public Node BestNodeChoice(Node n)
+        {
+            float smallestScore = float.MinValue;
+            Node chosenNode = null;
+
+            foreach (Node child in n.Childrens)
+            {
+                //Aleg copilul cu cel mai bun scor, daca mai multi copii au acelasi scor, il aleg pe cel ce are mai putini copii.
+                if (child.AverageScore > smallestScore || child.AverageScore == smallestScore && chosenNode.Childrens.Count > child.Childrens.Count)
+                {
+                    smallestScore = child.AverageScore;
+                    chosenNode = child;
                 }
             }
-            return bestChild;
+
+            return chosenNode;
         }
 
         /// <summary>
-        /// 
+        /// Functie de stopare a algoritmului.
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="isRootPlayer"></param>
-        /// <returns></returns>
-        public static double GetEvaluation(this Node node, bool isRootPlayer)
+        public void Finish()
         {
-            var wins = isRootPlayer ? node.Wins : node.Visits - node.Wins;
-            return wins / node.Visits + 0.85 * Math.Sqrt(Math.Log(node.ParentNode.Visits) / node.Visits);
+            Finished = true;
         }
-
-        #endregion
-
-        #region EXPANSION
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        public static Node ExpandChild(this Node node)
-        {
-            return node;
-        }
-        #endregion
-
-        #region SIMULATION
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="rootPlayer"></param>
-        /// <returns></returns>
-        public static float Simulate(this Node node, byte rootPlayer)
-        {
-            return 0;
-        }
-        #endregion
-
-        #region BACKPROPAGATION
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="reward"></param>
-        public static void BackPropagate(this Node node, float reward)
-        {
-
-        }
-        #endregion
     }
 }

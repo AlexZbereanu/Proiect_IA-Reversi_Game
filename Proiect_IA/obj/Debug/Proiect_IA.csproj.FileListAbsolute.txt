@@ -7,3 +7,4 @@ E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.csproj
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.csproj.CoreCompileInputs.cache
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.exe
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.pdb
+E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.Form1.resources
