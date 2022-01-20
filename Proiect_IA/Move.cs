@@ -66,5 +66,21 @@ namespace Proiect_IA
         {
             return "(" + X + "," + Y + ")";
         }
+
+        public Point Point
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Node Node
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Proiect_IA
         private Board _board;
         private Bitmap _boardImage;
         private List<Button> _buttons;
+        private TreeSearch alg;
 
         public Form1()
         {
@@ -35,10 +36,27 @@ namespace Proiect_IA
             this.pictureBoxBoard.Size = new System.Drawing.Size(500, 500);
 
             _buttons = new List<Button>() { btn00, btn01, btn02, btn03, btn10, btn11, btn12, btn13, btn20, btn21, btn22, btn23, btn30, btn31, btn32, btn33 };
+            alg = new TreeSearch(_board);
 
             pictureBoxBoard.Refresh();
 
             statusBar.Enabled = false;
+        }
+
+        public TreeSearch TreeSearch
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Board Board
+        {
+            get => default;
+            set
+            {
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -46,8 +64,11 @@ namespace Proiect_IA
             textBox1.Text = "";
             stateLabel.Text = "Etapa 1";
 
-            TreeSearch alg = new TreeSearch(_board);
-            alg.Step(textBox1);
+            
+            for (int i = 0; i < Convert.ToInt32(textBox_NrSim.Text); i++)
+            {
+                alg.Step(textBox1);
+            }
 
             // Add the scroll throughout simulation feature
 
@@ -112,7 +133,6 @@ namespace Proiect_IA
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

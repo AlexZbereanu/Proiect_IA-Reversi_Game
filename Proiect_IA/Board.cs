@@ -159,7 +159,7 @@ namespace Proiect_IA
         /// Simulates random plays on this board until the game has ended
         /// </summary>
         /// <returns>The resultant board after it has been simulated</returns>
-        public Board SimulateUntilEnd(TextBox console, List<Button> buttons)
+        public Board SimulateUntilEnd(Node n, TextBox console, List<Button> buttons)
         {
             var rand = new Random();
             Board temp = new Board(this);
@@ -171,9 +171,12 @@ namespace Proiect_IA
             // End update buttons
 
             console.Text += Environment.NewLine;
+            bool ok = true;
             while (temp.Winner == -1)
             {
+                ok = false;
                 temp.MakeMove(temp.PossibleMoves()[rand.Next(0, temp.PossibleMoves().Count())], buttons);
+                //temp.MakeMove(temp.PossibleMoves()[BestNodeChoice(n)], buttons);
                 console.Text += temp.ToString();
 
                 // Update until there is a winner
@@ -182,6 +185,64 @@ namespace Proiect_IA
             }
 
             return temp;
+        }
+
+        /// <summary>
+        /// Alegerea celui mai bun nod.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>Cel mai bun copil pentru nodul curent.</returns>
+        public int BestNodeChoice(Node n)
+        {
+            float smallestScore = float.MinValue;
+            Node chosenNode = null;
+            int id = 0;
+            int chosenId = 0;
+
+            foreach (Node child in n.Childrens)
+            {
+                //Aleg copilul cu cel mai bun scor, daca mai multi copii au acelasi scor, il aleg pe cel ce are mai putini copii.
+                if (child.AverageScore > smallestScore || child.AverageScore == smallestScore && chosenNode.Childrens.Count > child.Childrens.Count)
+                {
+                    smallestScore = child.AverageScore;
+                    chosenNode = child;
+                    chosenId = id;
+                }
+                id++;
+            }
+
+            return chosenId;
+        }
+
+        /// <summary>
+        /// Returnam tabla nopua de joc in functie de mutarea facuta.
+        /// </summary>
+        /// <param name="move">mutarea de facut.</param>
+        /// <returns>O referinta catre noua tabla de joc.</returns>
+        public Board MakeMove(Move move, List<Button> buttons)
+        {
+            Move m = move;
+
+            boardContents[m.Position.X, m.Position.Y] = CurrentPlayer;
+
+            foreach (Point p in m.CapturableCells)
+            {
+                boardContents[p.X, p.Y] = CurrentPlayer;
+            }
+
+            CurrentPlayer = NextPlayer;
+
+
+
+
+            CalculatePossibleMoves();
+
+            if (possibleMoves.Count == 0)
+            {
+                DetermineWinner();
+            }
+
+            return this;
         }
 
 
@@ -441,36 +502,7 @@ namespace Proiect_IA
             return result;
         }
 
-        /// <summary>
-        /// Returnam tabla nopua de joc in functie de mutarea facuta.
-        /// </summary>
-        /// <param name="move">mutarea de facut.</param>
-        /// <returns>O referinta catre noua tabla de joc.</returns>
-        public Board MakeMove(Move move, List<Button> buttons)
-        {
-            Move m = move;
-
-            boardContents[m.Position.X, m.Position.Y] = CurrentPlayer;
-
-            foreach (Point p in m.CapturableCells)
-            {
-                boardContents[p.X, p.Y] = CurrentPlayer;
-            }
-
-            CurrentPlayer = NextPlayer;
-
-            
-
-
-            CalculatePossibleMoves();
-
-            if (possibleMoves.Count == 0)
-            {
-                DetermineWinner();
-            }
-
-            return this;
-        }
+        
 
         
 
@@ -558,6 +590,14 @@ namespace Proiect_IA
         protected int PlayerCount()
         {
             return 2;
+        }
+
+        public Node Node
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

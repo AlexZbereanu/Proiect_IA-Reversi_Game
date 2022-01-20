@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Proiect_IA.TreeSearch">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgACAAAAQAAAAAAAAAAAAAIAAQACIAQAk=</HashCode>
+      <FileName>MonteCarloAlgo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Board" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Proiect_IA.Move">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAkAAAAAAAAAAAAAAAEAAAAAAEAYAA=</HashCode>
+      <FileName>Move.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Point" />
+      <Property Name="Node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Proiect_IA.Node">
+    <Position X="14.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAIAAAAABAAAQACAAEQCAAAAAAAAAgBAAAACAAAgA=</HashCode>
+      <FileName>Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Proiect_IA.Board">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAgCAAADAYAAIAkABCAAEAAJAAAAgACAAAAgAEAABA=</HashCode>
+      <FileName>Board.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Proiect_IA.Form1">
+    <Position X="5.25" Y="2.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ARgAYAAAQCAAABEgEACgPBAaAABJHgAekGgAgCdAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TreeSearch" />
+      <Property Name="Board" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="Proiect_IA.Point">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Point.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

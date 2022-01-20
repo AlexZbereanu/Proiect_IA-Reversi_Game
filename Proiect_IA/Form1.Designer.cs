@@ -56,6 +56,8 @@ namespace Proiect_IA
             this.btn30 = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.TrackBar();
             this.stateLabel = new System.Windows.Forms.Label();
+            this.textBox_NrSim = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBoard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
             this.SuspendLayout();
@@ -117,7 +119,7 @@ namespace Proiect_IA
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 55);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Joc nou";
+            this.button1.Text = "Start simulare";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -270,7 +272,7 @@ namespace Proiect_IA
             // 
             this.statusBar.Location = new System.Drawing.Point(551, 54);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(341, 56);
+            this.statusBar.Size = new System.Drawing.Size(341, 45);
             this.statusBar.TabIndex = 19;
             this.statusBar.Scroll += new System.EventHandler(this.statusBar_Scroll);
             // 
@@ -279,12 +281,31 @@ namespace Proiect_IA
             this.stateLabel.AutoSize = true;
             this.stateLabel.Location = new System.Drawing.Point(563, 104);
             this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(0, 17);
+            this.stateLabel.Size = new System.Drawing.Size(0, 13);
             this.stateLabel.TabIndex = 20;
+            // 
+            // textBox_NrSim
+            // 
+            this.textBox_NrSim.Location = new System.Drawing.Point(683, 117);
+            this.textBox_NrSim.Name = "textBox_NrSim";
+            this.textBox_NrSim.Size = new System.Drawing.Size(100, 20);
+            this.textBox_NrSim.TabIndex = 21;
+            this.textBox_NrSim.Text = "1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(583, 120);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Numar simulari:";
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1832, 963);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox_NrSim);
             this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.btn33);
@@ -342,6 +363,8 @@ namespace Proiect_IA
         private System.Windows.Forms.Button btn30;
         private System.Windows.Forms.TrackBar statusBar;
         private System.Windows.Forms.Label stateLabel;
+        private System.Windows.Forms.TextBox textBox_NrSim;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -37,6 +37,14 @@ namespace Proiect_IA
         /// </summary>
         public List<Button> Buttons { get; set; }
 
+        public Board Board
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Creare arbore cu o tabla data.
         /// </summary>
@@ -74,7 +82,7 @@ namespace Proiect_IA
                 AllNodes.Add(currentNode);
             }
             //Simulation
-            Board resultState = currentNode.Board.SimulateUntilEnd(console, Buttons);
+            Board resultState = currentNode.Board.SimulateUntilEnd(currentNode, console, Buttons);
             
             //Backpropogation
             while (currentNode != null)
@@ -119,28 +127,7 @@ namespace Proiect_IA
             }
         }
 
-        /// <summary>
-        /// Alegerea celui mai bun nod.
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns>Cel mai bun copil pentru nodul curent.</returns>
-        public Node BestNodeChoice(Node n)
-        {
-            float smallestScore = float.MinValue;
-            Node chosenNode = null;
-
-            foreach (Node child in n.Childrens)
-            {
-                //Aleg copilul cu cel mai bun scor, daca mai multi copii au acelasi scor, il aleg pe cel ce are mai putini copii.
-                if (child.AverageScore > smallestScore || child.AverageScore == smallestScore && chosenNode.Childrens.Count > child.Childrens.Count)
-                {
-                    smallestScore = child.AverageScore;
-                    chosenNode = child;
-                }
-            }
-
-            return chosenNode;
-        }
+        
 
         /// <summary>
         /// Functie de stopare a algoritmului.
