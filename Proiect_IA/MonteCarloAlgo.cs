@@ -33,6 +33,11 @@ namespace Proiect_IA
         public List<Node> AllNodes { get; set; }
 
         /// <summary>
+        /// O instanta a clasei form
+        /// </summary>
+        public List<Button> Buttons { get; set; }
+
+        /// <summary>
         /// Creare arbore cu o tabla data.
         /// </summary>
         /// <param name="gameBoard">Tabla de joc.</param>
@@ -69,7 +74,7 @@ namespace Proiect_IA
                 AllNodes.Add(currentNode);
             }
             //Simulation
-            Board resultState = currentNode.Board.SimulateUntilEnd(console);
+            Board resultState = currentNode.Board.SimulateUntilEnd(console, Buttons);
             
             //Backpropogation
             while (currentNode != null)

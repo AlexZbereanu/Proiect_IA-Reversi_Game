@@ -76,7 +76,7 @@ namespace Proiect_IA
             Move move = UntriedMoves.ElementAt(random.Next(0, UntriedMoves.Count));
 
             Board newBoard = new Board(Board);
-            newBoard.MakeMove(move);
+            newBoard.MakeMove(move, new List<System.Windows.Forms.Button>());
 
             Node child = new Node(this, newBoard);
             Childrens.Add(child);

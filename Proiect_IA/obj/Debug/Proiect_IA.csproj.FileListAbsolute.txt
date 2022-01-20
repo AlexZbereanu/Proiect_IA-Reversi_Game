@@ -8,3 +8,13 @@ E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.csproj
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.exe
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.pdb
 E:\Facultate_An4\SEMESTRU_1\IA\Proiect_IA\Proiect_IA\obj\Debug\Proiect_IA.Form1.resources
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\bin\Debug\Proiect_IA.exe.config
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\bin\Debug\Proiect_IA.exe
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\bin\Debug\Proiect_IA.pdb
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.csproj.AssemblyReference.cache
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.Form1.resources
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.Properties.Resources.resources
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.csproj.GenerateResource.cache
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.csproj.CoreCompileInputs.cache
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.exe
+E:\Facultate\an4_sem1\IA\Proiect\Proiect_IA-Reversi_Game\Proiect_IA\obj\Debug\Proiect_IA.pdb

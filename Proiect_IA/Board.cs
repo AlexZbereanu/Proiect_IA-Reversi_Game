@@ -9,6 +9,8 @@ namespace Proiect_IA
 {
     public class Board 
     {
+
+
         /// <summary>
         /// Piesele tablei de joc.
         /// </summary>
@@ -65,6 +67,21 @@ namespace Proiect_IA
                 {
                     result += boardContents[x, y];
 
+                    /*
+                    if (_buttons.Count != 0)
+                    {
+                        //_buttons[0][0].Text = boardContents[x, y].ToString();
+                    }*/
+
+                    /*
+
+                    if(_buttons.Count != 0)
+                    {
+                        _buttons[x][y].Text = boardContents[x, y].ToString();
+                    }
+                    
+                     */
+
                     if (x != Width - 1)
                     {
                         result += " ";
@@ -108,6 +125,7 @@ namespace Proiect_IA
         /// </summary>
         private const float DRAW_SCORE = 0.5f;
 
+
         /// <summary>
         /// Creeaza o tabla noua de joc, reprezentant o tabla statica.
         /// </summary>
@@ -141,22 +159,30 @@ namespace Proiect_IA
         /// Simulates random plays on this board until the game has ended
         /// </summary>
         /// <returns>The resultant board after it has been simulated</returns>
-        public Board SimulateUntilEnd(TextBox console)
+        public Board SimulateUntilEnd(TextBox console, List<Button> buttons)
         {
             var rand = new Random();
             Board temp = new Board(this);
             console.Text += temp.ToString();
+
+            // Update buttons
+
+
+            // End update buttons
+
             console.Text += Environment.NewLine;
             while (temp.Winner == -1)
             {
-                temp.MakeMove(temp.PossibleMoves()[rand.Next(0, temp.PossibleMoves().Count())]);
+                temp.MakeMove(temp.PossibleMoves()[rand.Next(0, temp.PossibleMoves().Count())], buttons);
                 console.Text += temp.ToString();
+
+                // Update until there is a winner
+
                 console.Text += Environment.NewLine;
             }
 
             return temp;
         }
-
 
 
         /// <summary>
@@ -420,7 +446,7 @@ namespace Proiect_IA
         /// </summary>
         /// <param name="move">mutarea de facut.</param>
         /// <returns>O referinta catre noua tabla de joc.</returns>
-        public Board MakeMove(Move move)
+        public Board MakeMove(Move move, List<Button> buttons)
         {
             Move m = move;
 
@@ -433,6 +459,9 @@ namespace Proiect_IA
 
             CurrentPlayer = NextPlayer;
 
+            
+
+
             CalculatePossibleMoves();
 
             if (possibleMoves.Count == 0)
@@ -442,6 +471,8 @@ namespace Proiect_IA
 
             return this;
         }
+
+        
 
         /// <summary>
         /// Returneaza mutarile posibile.
